@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Local Storage</title>
+  </head>
+  <body>
+    <form>
+      <label for="name">Ingresa tu nombre</label>
+      <input type="text" id="name" name="name" placeholder="Ingresa tu nombre">
+      <button type="submit">Guardar</button>
+    </form>
+    <div class="li-container" >
+        <ul>
+
+        </ul>
+    </div>
+    <div>
+        <p></p>
+    </div>
+
+    <div class="button"  >
+        <button type="button" id="borrar">Borrar</button>
+    </div>
+    <section>
+        <p></p>
+    </section>
+    <script >
+      // Obtener elementos del DOM
+      const form = document.querySelector('form');
+      const input = document.querySelector('input');
+      const section = document.querySelector('section');
+      const ul = document.querySelector("ul");
+      const clearBtn = document.querySelector('#borrar');
+      const parrafo = document.querySelector("p");
+        console.log(clearBtn);
+      // Manejar el evento de enviar el formulario
+      form.addEventListener('submit', (event) => {
+     
+
+        event.preventDefault();
+
+        const nombre = input.value;
+
+        if(nombre !== ""){
+            
+            
+            localStorage.setItem("nombre",nombre);
+
+            
+
+            input.value = "";
+        }
+
+        showName();
+
+      });
+
+      // Función para mostrar el nombre guardado en localStorage
+      function showName(event) {
+        
+        parrafo.textContent=localStorage.getItem("nombre");
+        console.log(parrafo);
+      }
+
+      clearBtn.addEventListener('click',(event)=>{
+
+        const nombre = input.value;
+        
+        deleteName();
+
+
+      })
+      // Función para borrar el nombre guardado en localStorage
+      function deleteName() {
+
+        localStorage.removeItem("nombre");
+        parrafo.textContent="";
+
+      }
+
+      // Mostrar el nombre guardado al cargar la página
+      showName();
+    </script>
+  </body>
+</html>
